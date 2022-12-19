@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m221216_102708_create_table_role extends Migration
+class m221219_091011_create_table_media_type extends Migration
 {
     public function safeUp()
     {
@@ -12,11 +12,10 @@ class m221216_102708_create_table_role extends Migration
         }
 
         $this->createTable(
-            '{{%role}}',
+            '{{%media_type}}',
             [
                 'id' => $this->primaryKey(),
                 'title' => $this->string(20)->notNull(),
-                'permissions_id' => $this->integer()->notNull(),
             ],
             $tableOptions
         );
@@ -24,6 +23,6 @@ class m221216_102708_create_table_role extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('{{%role}}');
+        $this->dropTable('{{%media_type}}');
     }
 }

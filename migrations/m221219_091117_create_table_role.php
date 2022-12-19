@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m221216_102713_create_table_sex extends Migration
+class m221219_091117_create_table_role extends Migration
 {
     public function safeUp()
     {
@@ -12,10 +12,11 @@ class m221216_102713_create_table_sex extends Migration
         }
 
         $this->createTable(
-            '{{%sex}}',
+            '{{%role}}',
             [
                 'id' => $this->primaryKey(),
-                'title' => $this->string(10)->notNull(),
+                'title' => $this->string(20)->notNull(),
+                'permissions_id' => $this->integer()->notNull(),
             ],
             $tableOptions
         );
@@ -23,6 +24,6 @@ class m221216_102713_create_table_sex extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('{{%sex}}');
+        $this->dropTable('{{%role}}');
     }
 }

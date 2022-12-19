@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m221216_102447_create_table_currency extends Migration
+class m221219_090911_create_table_city extends Migration
 {
     public function safeUp()
     {
@@ -12,10 +12,10 @@ class m221216_102447_create_table_currency extends Migration
         }
 
         $this->createTable(
-            '{{%currency}}',
+            '{{%city}}',
             [
                 'id' => $this->primaryKey(),
-                'title' => $this->string(3)->notNull(),
+                'name' => $this->string(28)->notNull(),
             ],
             $tableOptions
         );
@@ -23,6 +23,6 @@ class m221216_102447_create_table_currency extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('{{%currency}}');
+        $this->dropTable('{{%city}}');
     }
 }

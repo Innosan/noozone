@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m221216_102611_create_table_media_list extends Migration
+class m221219_090946_create_table_favourite extends Migration
 {
     public function safeUp()
     {
@@ -12,29 +12,29 @@ class m221216_102611_create_table_media_list extends Migration
         }
 
         $this->createTable(
-            '{{%media_list}}',
+            '{{%favourite}}',
             [
                 'id' => $this->primaryKey(),
-                'media_id' => $this->integer()->notNull(),
+                'product_id' => $this->integer()->notNull(),
             ],
             $tableOptions
         );
 
-        $this->createIndex('media_id', '{{%media_list}}', ['media_id']);
+        $this->createIndex('product_id', '{{%favourite}}', ['product_id']);
 
         $this->addForeignKey(
-            'media_list_ibfk_1',
-            '{{%media_list}}',
-            ['media_id'],
-            '{{%media}}',
+            'favourite_ibfk_1',
+            '{{%favourite}}',
+            ['product_id'],
+            '{{%product}}',
             ['id'],
-            'CASCADE',
-            'CASCADE'
+            'NO ACTION',
+            'NO ACTION'
         );
     }
 
     public function safeDown()
     {
-        $this->dropTable('{{%media_list}}');
+        $this->dropTable('{{%favourite}}');
     }
 }

@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m221216_102653_create_table_products extends Migration
+class m221219_091122_create_table_sex extends Migration
 {
     public function safeUp()
     {
@@ -12,10 +12,10 @@ class m221216_102653_create_table_products extends Migration
         }
 
         $this->createTable(
-            '{{%products}}',
+            '{{%sex}}',
             [
                 'id' => $this->primaryKey(),
-                'product_id' => $this->integer()->notNull(),
+                'title' => $this->string(10)->notNull(),
             ],
             $tableOptions
         );
@@ -23,6 +23,6 @@ class m221216_102653_create_table_products extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('{{%products}}');
+        $this->dropTable('{{%sex}}');
     }
 }

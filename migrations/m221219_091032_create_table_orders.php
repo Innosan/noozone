@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m221216_102413_create_table_cart extends Migration
+class m221219_091032_create_table_orders extends Migration
 {
     public function safeUp()
     {
@@ -12,22 +12,21 @@ class m221216_102413_create_table_cart extends Migration
         }
 
         $this->createTable(
-            '{{%cart}}',
+            '{{%orders}}',
             [
                 'id' => $this->primaryKey(),
-                'total_price' => $this->float()->notNull(),
-                'products_id' => $this->integer()->notNull(),
+                'order_id' => $this->integer()->notNull(),
             ],
             $tableOptions
         );
 
-        $this->createIndex('products_id', '{{%cart}}', ['products_id']);
+        $this->createIndex('order_id', '{{%orders}}', ['order_id']);
 
         $this->addForeignKey(
-            'cart_ibfk_1',
-            '{{%cart}}',
-            ['products_id'],
-            '{{%products}}',
+            'orders_ibfk_1',
+            '{{%orders}}',
+            ['order_id'],
+            '{{%order}}',
             ['id'],
             'CASCADE',
             'CASCADE'
@@ -36,6 +35,6 @@ class m221216_102413_create_table_cart extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('{{%cart}}');
+        $this->dropTable('{{%orders}}');
     }
 }

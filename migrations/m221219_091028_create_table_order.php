@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m221216_102625_create_table_order extends Migration
+class m221219_091028_create_table_order extends Migration
 {
     public function safeUp()
     {
@@ -15,7 +15,6 @@ class m221216_102625_create_table_order extends Migration
             '{{%order}}',
             [
                 'id' => $this->primaryKey(),
-                'order_place_id' => $this->integer()->notNull(),
                 'delivery_type_id' => $this->integer()->notNull(),
                 'total_cost' => $this->float()->notNull(),
                 'total_discount' => $this->integer()->notNull(),
@@ -28,22 +27,12 @@ class m221216_102625_create_table_order extends Migration
 
         $this->createIndex('card_id', '{{%order}}', ['card_id']);
         $this->createIndex('delivery_type_id', '{{%order}}', ['delivery_type_id']);
-        $this->createIndex('order_place_id', '{{%order}}', ['order_place_id']);
 
         $this->addForeignKey(
             'order_ibfk_1',
             '{{%order}}',
             ['card_id'],
             '{{%card}}',
-            ['id'],
-            'NO ACTION',
-            'NO ACTION'
-        );
-        $this->addForeignKey(
-            'order_ibfk_2',
-            '{{%order}}',
-            ['order_place_id'],
-            '{{%order_place}}',
             ['id'],
             'NO ACTION',
             'NO ACTION'

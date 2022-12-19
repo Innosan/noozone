@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m221216_102700_create_table_review extends Migration
+class m221219_091104_create_table_review extends Migration
 {
     public function safeUp()
     {
@@ -18,15 +18,37 @@ class m221216_102700_create_table_review extends Migration
                 'pros' => $this->text()->notNull(),
                 'cons' => $this->text()->notNull(),
                 'description' => $this->text()->notNull(),
-                'media_list_id' => $this->integer()->notNull(),
                 'is_approved' => $this->boolean()->notNull(),
                 'likes' => $this->integer()->notNull(),
                 'dislikes' => $this->integer()->notNull(),
                 'created_at' => $this->date()->notNull(),
                 'updated_at' => $this->date()->notNull(),
                 'created_by' => $this->integer()->notNull(),
+                'product_id' => $this->integer()->notNull(),
             ],
             $tableOptions
+        );
+
+        $this->createIndex('created_by', '{{%review}}', ['created_by']);
+        $this->createIndex('product_id', '{{%review}}', ['product_id']);
+
+        $this->addForeignKey(
+            'review_ibfk_1',
+            '{{%review}}',
+            ['created_by'],
+            '{{%user}}',
+            ['id'],
+            'NO ACTION',
+            'NO ACTION'
+        );
+        $this->addForeignKey(
+            'review_ibfk_2',
+            '{{%review}}',
+            ['product_id'],
+            '{{%product}}',
+            ['id'],
+            'NO ACTION',
+            'NO ACTION'
         );
     }
 

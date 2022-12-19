@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m221216_102638_create_table_order_place extends Migration
+class m221219_091038_create_table_order_place extends Migration
 {
     public function safeUp()
     {
@@ -20,11 +20,13 @@ class m221216_102638_create_table_order_place extends Migration
                 'house' => $this->integer()->notNull(),
                 'flat' => $this->integer()->notNull(),
                 'description' => $this->text()->notNull(),
+                'user_id' => $this->integer()->notNull(),
             ],
             $tableOptions
         );
 
         $this->createIndex('city_id', '{{%order_place}}', ['city_id']);
+        $this->createIndex('user_id', '{{%order_place}}', ['user_id']);
 
         $this->addForeignKey(
             'order_place_ibfk_1',
@@ -34,6 +36,15 @@ class m221216_102638_create_table_order_place extends Migration
             ['id'],
             'RESTRICT',
             'RESTRICT'
+        );
+        $this->addForeignKey(
+            'order_place_ibfk_2',
+            '{{%order_place}}',
+            ['user_id'],
+            '{{%user}}',
+            ['id'],
+            'NO ACTION',
+            'NO ACTION'
         );
     }
 

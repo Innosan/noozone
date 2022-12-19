@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m221216_102618_create_table_media_type extends Migration
+class m221219_090927_create_table_currency extends Migration
 {
     public function safeUp()
     {
@@ -12,10 +12,10 @@ class m221216_102618_create_table_media_type extends Migration
         }
 
         $this->createTable(
-            '{{%media_type}}',
+            '{{%currency}}',
             [
                 'id' => $this->primaryKey(),
-                'title' => $this->string(20)->notNull(),
+                'title' => $this->string(3)->notNull(),
             ],
             $tableOptions
         );
@@ -23,6 +23,6 @@ class m221216_102618_create_table_media_type extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('{{%media_type}}');
+        $this->dropTable('{{%currency}}');
     }
 }

@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m221216_102605_create_table_media extends Migration
+class m221219_091057_create_table_product_media extends Migration
 {
     public function safeUp()
     {
@@ -12,22 +12,33 @@ class m221216_102605_create_table_media extends Migration
         }
 
         $this->createTable(
-            '{{%media}}',
+            '{{%product_media}}',
             [
                 'id' => $this->primaryKey(),
                 'media_type_id' => $this->integer()->notNull(),
                 'url' => $this->string(300)->notNull(),
+                'product_id' => $this->integer()->notNull(),
             ],
             $tableOptions
         );
 
-        $this->createIndex('media_type_id', '{{%media}}', ['media_type_id']);
+        $this->createIndex('media_type_id', '{{%product_media}}', ['media_type_id']);
+        $this->createIndex('product_id', '{{%product_media}}', ['product_id']);
 
         $this->addForeignKey(
-            'media_ibfk_1',
-            '{{%media}}',
+            'product_media_ibfk_1',
+            '{{%product_media}}',
             ['media_type_id'],
             '{{%media_type}}',
+            ['id'],
+            'RESTRICT',
+            'RESTRICT'
+        );
+        $this->addForeignKey(
+            'product_media_ibfk_2',
+            '{{%product_media}}',
+            ['product_id'],
+            '{{%product}}',
             ['id'],
             'RESTRICT',
             'RESTRICT'
@@ -36,6 +47,6 @@ class m221216_102605_create_table_media extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('{{%media}}');
+        $this->dropTable('{{%product_media}}');
     }
 }

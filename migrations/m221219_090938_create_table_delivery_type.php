@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m221216_102421_create_table_category extends Migration
+class m221219_090938_create_table_delivery_type extends Migration
 {
     public function safeUp()
     {
@@ -12,10 +12,10 @@ class m221216_102421_create_table_category extends Migration
         }
 
         $this->createTable(
-            '{{%category}}',
+            '{{%delivery_type}}',
             [
                 'id' => $this->primaryKey(),
-                'title' => $this->integer()->notNull(),
+                'title' => $this->string(20)->notNull(),
             ],
             $tableOptions
         );
@@ -23,6 +23,6 @@ class m221216_102421_create_table_category extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('{{%category}}');
+        $this->dropTable('{{%delivery_type}}');
     }
 }

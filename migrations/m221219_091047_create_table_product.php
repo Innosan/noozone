@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m221216_102649_create_table_product extends Migration
+class m221219_091047_create_table_product extends Migration
 {
     public function safeUp()
     {
@@ -16,7 +16,6 @@ class m221216_102649_create_table_product extends Migration
             [
                 'id' => $this->primaryKey(),
                 'title' => $this->string(100)->notNull(),
-                'media_list_id' => $this->integer()->notNull(),
                 'is_discounted' => $this->boolean()->notNull(),
                 'description' => $this->text()->notNull(),
                 'specifications' => $this->text()->notNull(),
@@ -28,7 +27,6 @@ class m221216_102649_create_table_product extends Migration
                 'created_by' => $this->integer()->notNull(),
                 'price' => $this->float()->notNull(),
                 'category_id' => $this->integer()->notNull(),
-                'reviews_id' => $this->integer()->notNull(),
                 'discount' => $this->integer()->notNull(),
                 'new_price' => $this->float()->notNull(),
             ],
@@ -38,18 +36,7 @@ class m221216_102649_create_table_product extends Migration
         $this->createIndex('category_id', '{{%product}}', ['category_id']);
         $this->createIndex('company_id', '{{%product}}', ['company_id']);
         $this->createIndex('created_by', '{{%product}}', ['created_by']);
-        $this->createIndex('media_list_id', '{{%product}}', ['media_list_id']);
-        $this->createIndex('reviews_id', '{{%product}}', ['reviews_id']);
 
-        $this->addForeignKey(
-            'product_ibfk_1',
-            '{{%product}}',
-            ['media_list_id'],
-            '{{%media_list}}',
-            ['id'],
-            'NO ACTION',
-            'NO ACTION'
-        );
         $this->addForeignKey(
             'product_ibfk_2',
             '{{%product}}',
@@ -73,15 +60,6 @@ class m221216_102649_create_table_product extends Migration
             '{{%product}}',
             ['category_id'],
             '{{%category}}',
-            ['id'],
-            'NO ACTION',
-            'NO ACTION'
-        );
-        $this->addForeignKey(
-            'product_ibfk_5',
-            '{{%product}}',
-            ['reviews_id'],
-            '{{%reviews}}',
             ['id'],
             'NO ACTION',
             'NO ACTION'
