@@ -64,5 +64,13 @@ return [
 ];
 ```
 
+### Диаграмма базы данных
+<p align="center">
+<a align="center" href="https://ibb.co/WsLkMyZ"><img src="https://i.ibb.co/Trs4786/noozone-diagram.png" alt="noozone-diagram" border="0" /></a>
+</p>
+
+
+
+
 **Заметки:**
 - Предварительно нужно создать базу данных!
