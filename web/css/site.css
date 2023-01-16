@@ -16,6 +16,10 @@ form {
     gap: 1.5em;
 }
 
+select {
+    cursor: pointer;
+}
+
 .footer {
     background-color: #f5f5f5;
     font-size: .9em;
@@ -76,10 +80,32 @@ a.desc:after {
     color: #de4f4f;
 }
 
+.navbar-collapse {
+    flex-grow: unset;
+}
+
 /* align the logout "link" (button in form) of the navbar */
 .nav li > form > button.logout {
     padding-top: 7px;
     color: rgba(255, 255, 255, 0.5);
+}
+
+.form-control {
+    width: 40%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.control-label {
+    font-weight: bold;
+}
+
+.btn-success {
+    width: 15%;
 }
 
 @media(max-width:767px) {

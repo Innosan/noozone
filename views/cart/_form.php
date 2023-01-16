@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'total_price')->textInput() ?>
 
-    <?= $form->field($model, 'products_id')->textInput() ?>
+    <?= $form->field($model, 'products_id')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\Products::find()->all(), 'id', 'id')))?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

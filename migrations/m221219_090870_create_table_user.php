@@ -15,7 +15,7 @@ class m221219_090870_create_table_user extends Migration
             '{{%user}}',
             [
                 'id' => $this->primaryKey(),
-                'role_id' => $this->integer()->notNull(),
+                'role_id' => $this->integer(),
                 'mail' => $this->string(50)->notNull(),
                 'phone' => $this->string(15)->notNull(),
                 'login' => $this->string(50)->notNull(),
@@ -27,9 +27,9 @@ class m221219_090870_create_table_user extends Migration
                 'date_of_birth' => $this->date()->notNull(),
                 'first_name' => $this->string(50)->notNull(),
                 'last_name' => $this->string(50)->notNull(),
-                'cart_id' => $this->integer()->notNull(),
-                'favourite_id' => $this->integer()->notNull(),
-                'orders_id' => $this->integer()->notNull(),
+                'cart_id' => $this->integer(),
+                'favourite_id' => $this->integer(),
+                'orders_id' => $this->integer(),
             ],
             $tableOptions
         );

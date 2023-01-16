@@ -42,14 +42,14 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             ['label' => 'Главная', 'url' => ['/site/index']],
             ['label' => 'О нас', 'url' => ['/site/about']],
             ['label' => 'Админ', 'url' => ['/site/admin']],
-            ['label' => 'Sex', 'url' => ['/sex/index']],
             ['label' => 'Контакты', 'url' => ['/site/contact']],
+            ['label' => 'Зарегистрироваться', 'url' => ['/site/sign-up']],
             Yii::$app->user->isGuest
                 ? ['label' => 'Войти', 'url' => ['/site/login']]
                 : '<li class="nav-item">'
                     . Html::beginForm(['/site/logout'])
                     . Html::submitButton(
-                        'Выйти (' . Yii::$app->user->identity->username . ')',
+                        'Выйти (' . Yii::$app->user->identity->login . ')',
                         ['class' => 'nav-link btn btn-link logout']
                     )
                     . Html::endForm()

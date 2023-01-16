@@ -12,11 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'media_type_id')->textInput() ?>
+    <?= $form->field($model, 'media_type_id')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\MediaType::find()->all(), 'id', 'title')))?>
 
     <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'review_id')->textInput() ?>
+    <?= $form->field($model, 'review_id')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\Review::find()->all(), 'id', 'description')))?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
