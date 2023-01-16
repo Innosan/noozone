@@ -17,7 +17,7 @@ class OrderPlaceSearch extends OrderPlace
     public function rules()
     {
         return [
-            [['id', 'city_id', 'house', 'flat', 'user_id'], 'integer'],
+            [['id', 'city_id', 'house', 'flat'], 'integer'], //deleted user_id
             [['street', 'description'], 'safe'],
         ];
     }
@@ -62,7 +62,7 @@ class OrderPlaceSearch extends OrderPlace
             'city_id' => $this->city_id,
             'house' => $this->house,
             'flat' => $this->flat,
-            'user_id' => $this->user_id,
+//            'user_id' => $this->user_id,
         ]);
 
         $query->andFilterWhere(['like', 'street', $this->street])

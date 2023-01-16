@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m221219_091050_create_table_products extends Migration
+class m221219_090871_create_table_manager_list extends Migration
 {
     public function safeUp()
     {
@@ -12,29 +12,29 @@ class m221219_091050_create_table_products extends Migration
         }
 
         $this->createTable(
-            '{{%products}}',
+            '{{%manager_list}}',
             [
                 'id' => $this->primaryKey(),
-                'product_id' => $this->integer()->notNull(),
+                'manager_id' => $this->integer()->notNull(),
             ],
             $tableOptions
         );
 
-        $this->createIndex('product_id', '{{%products}}', ['product_id']);
+        $this->createIndex('manager_id', '{{%manager_list}}', ['manager_id']);
 
         $this->addForeignKey(
-            'products_ibfk_1',
-            '{{%products}}',
-            ['product_id'],
-            '{{%product}}',
+            'manager_list_ibfk_1',
+            '{{%manager_list}}',
+            ['manager_id'],
+            '{{%user}}',
             ['id'],
-            'CASCADE',
-            'CASCADE'
+            'NO ACTION',
+            'NO ACTION'
         );
     }
 
     public function safeDown()
     {
-        $this->dropTable('{{%products}}');
+        $this->dropTable('{{%manager_list}}');
     }
 }

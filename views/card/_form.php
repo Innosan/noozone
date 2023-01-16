@@ -16,11 +16,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'number')->textInput() ?>
 
-    <?= $form->field($model, 'expiry_date')->textInput() ?>
+    <?= $form->field($model, 'expiry_date')->widget(\yii\jui\DatePicker::className(), [
+        'options' => ['class' => 'form-control'],
+        'dateFormat' => 'yyyy-MM-dd',
+    ]) ?>
 
     <?= $form->field($model, 'owner_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'is_default')->textInput() ?>
+    <?= $form->field($model, 'is_default')->checkbox() ?>
 
     <?= $form->field($model, 'user_id')->textInput() ?>
 

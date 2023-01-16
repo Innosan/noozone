@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m221219_090955_create_table_manager_list extends Migration
+class m221219_090855_create_table_orders extends Migration
 {
     public function safeUp()
     {
@@ -12,29 +12,29 @@ class m221219_090955_create_table_manager_list extends Migration
         }
 
         $this->createTable(
-            '{{%manager_list}}',
+            '{{%orders}}',
             [
                 'id' => $this->primaryKey(),
-                'manager_id' => $this->integer()->notNull(),
+                'order_id' => $this->integer()->notNull(),
             ],
             $tableOptions
         );
 
-        $this->createIndex('manager_id', '{{%manager_list}}', ['manager_id']);
+        $this->createIndex('order_id', '{{%orders}}', ['order_id']);
 
         $this->addForeignKey(
-            'manager_list_ibfk_1',
-            '{{%manager_list}}',
-            ['manager_id'],
-            '{{%user}}',
+            'orders_ibfk_1',
+            '{{%orders}}',
+            ['order_id'],
+            '{{%order}}',
             ['id'],
-            'NO ACTION',
-            'NO ACTION'
+            'CASCADE',
+            'CASCADE'
         );
     }
 
     public function safeDown()
     {
-        $this->dropTable('{{%manager_list}}');
+        $this->dropTable('{{%orders}}');
     }
 }

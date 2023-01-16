@@ -13,10 +13,10 @@ use Yii;
  * @property int $house
  * @property int $flat
  * @property string $description
- * @property int $user_id
+ * //deleted userid
  *
  * @property City $city
- * @property User $user
+// * @property User $user
  */
 class OrderPlace extends \yii\db\ActiveRecord
 {
@@ -34,13 +34,13 @@ class OrderPlace extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'city_id', 'street', 'house', 'flat', 'description', 'user_id'], 'required'],
-            [['id', 'city_id', 'house', 'flat', 'user_id'], 'integer'],
+            [['id', 'city_id', 'street', 'house', 'flat', 'description'], 'required'], //deleted user_id
+            [['id', 'city_id', 'house', 'flat'], 'integer'], //deleted user_id
             [['description'], 'string'],
             [['street'], 'string', 'max' => 100],
             [['id'], 'unique'],
             [['city_id'], 'exist', 'skipOnError' => true, 'targetClass' => City::class, 'targetAttribute' => ['city_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
+//            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -51,12 +51,12 @@ class OrderPlace extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'city_id' => 'ID города',
+            'city_id' => 'Город',
             'street' => 'Улица',
             'house' => 'Дом',
             'flat' => 'Квартира',
             'description' => 'Описание',
-            'user_id' => 'ID пользователя',
+//            'user_id' => 'ID пользователя',
         ];
     }
 
@@ -70,13 +70,13 @@ class OrderPlace extends \yii\db\ActiveRecord
         return $this->hasOne(City::class, ['id' => 'city_id']);
     }
 
-    /**
-     * Gets query for [[User]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUser()
-    {
-        return $this->hasOne(User::class, ['id' => 'user_id']);
-    }
+//    /**
+//     * Gets query for [[User]].
+//     *
+//     * @return \yii\db\ActiveQuery
+//     */
+//    public function getUser()
+//    {
+//        return $this->hasOne(User::class, ['id' => 'user_id']);
+//    }
 }

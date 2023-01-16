@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m221219_090946_create_table_favourite extends Migration
+class m221219_090852_create_table_favourite extends Migration
 {
     public function safeUp()
     {

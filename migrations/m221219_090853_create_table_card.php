@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m221219_091117_create_table_role extends Migration
+class m221219_090853_create_table_card extends Migration
 {
     public function safeUp()
     {
@@ -12,11 +12,14 @@ class m221219_091117_create_table_role extends Migration
         }
 
         $this->createTable(
-            '{{%role}}',
+            '{{%card}}',
             [
                 'id' => $this->primaryKey(),
-                'title' => $this->string(20)->notNull(),
-                'permissions_id' => $this->integer()->notNull(),
+                'number' => $this->integer()->notNull(),
+                'expiry_date' => $this->date()->notNull(),
+                'owner_name' => $this->string(40)->notNull(),
+                'is_default' => $this->boolean()->notNull(),
+                'user_id' => $this->integer()->notNull(),
             ],
             $tableOptions
         );
@@ -24,6 +27,6 @@ class m221219_091117_create_table_role extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('{{%role}}');
+        $this->dropTable('{{%card}}');
     }
 }

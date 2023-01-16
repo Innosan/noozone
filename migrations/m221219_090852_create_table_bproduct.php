@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m221219_091047_create_table_product extends Migration
+class m221219_090852_create_table_bproduct extends Migration
 {
     public function safeUp()
     {
@@ -34,27 +34,7 @@ class m221219_091047_create_table_product extends Migration
         );
 
         $this->createIndex('category_id', '{{%product}}', ['category_id']);
-        $this->createIndex('company_id', '{{%product}}', ['company_id']);
-        $this->createIndex('created_by', '{{%product}}', ['created_by']);
 
-        $this->addForeignKey(
-            'product_ibfk_2',
-            '{{%product}}',
-            ['company_id'],
-            '{{%company}}',
-            ['id'],
-            'NO ACTION',
-            'NO ACTION'
-        );
-        $this->addForeignKey(
-            'product_ibfk_3',
-            '{{%product}}',
-            ['created_by'],
-            '{{%user}}',
-            ['id'],
-            'NO ACTION',
-            'NO ACTION'
-        );
         $this->addForeignKey(
             'product_ibfk_4',
             '{{%product}}',

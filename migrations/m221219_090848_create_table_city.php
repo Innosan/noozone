@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m221219_090938_create_table_delivery_type extends Migration
+class m221219_090848_create_table_city extends Migration
 {
     public function safeUp()
     {
@@ -12,10 +12,10 @@ class m221219_090938_create_table_delivery_type extends Migration
         }
 
         $this->createTable(
-            '{{%delivery_type}}',
+            '{{%city}}',
             [
                 'id' => $this->primaryKey(),
-                'title' => $this->string(20)->notNull(),
+                'name' => $this->string(28)->notNull(),
             ],
             $tableOptions
         );
@@ -23,6 +23,6 @@ class m221219_090938_create_table_delivery_type extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('{{%delivery_type}}');
+        $this->dropTable('{{%city}}');
     }
 }

@@ -55,7 +55,7 @@ class Company extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Наззвание',
+            'title' => 'Название',
             'tax_number' => 'ИНН',
             'photo_url' => 'Сыылка на фото',
             'created_at' => 'Создано',
