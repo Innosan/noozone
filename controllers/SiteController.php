@@ -2,10 +2,14 @@
 
 namespace app\controllers;
 
+use app\models\ChangeRole;
 use app\models\SignUpForm;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\VarDumper;
+use yii\web\BadRequestHttpException;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
@@ -81,6 +85,22 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionChangeRole() {
+        $model = new ChangeRole();
+
+        if (($model->load(Yii::$app->request->post()) && $model->validate())) {
+
+            $model->changeRole();
+            Yii::$app->session->setFlash('success', 'Successfully changed role!');
+
+            return $this->refresh();
+        }
+
+        return $this->render('changerole', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Login action.
      *
@@ -147,9 +167,13 @@ class SiteController extends Controller
      * Displays about page.
      *
      * @return string
+     * @throws ForbiddenHttpException
      */
     public function actionAdmin()
     {
+        if (!\Yii::$app->user->can('viewAdminPage')) {
+            throw new ForbiddenHttpException('Access denied');
+        }
         return $this->render('admin');
     }
 }

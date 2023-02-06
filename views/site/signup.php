@@ -5,17 +5,17 @@
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
 
-$this->title = 'Sign Up';
+$this->title = 'Регистрация';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="site-signup">
     <h1><?= Html::encode($this->title) ?></h1>
-    <p>Please fill out the following fields to signup:</p>
+    <p>Заполните поля, чтобы зарегистрироваться:</p>
     <div class="row">
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
-            <div class="d-flex flex-row gap-5">
+            <div class="d-flex flex-row gap-lg-5">
                 <div class="d-flex flex-column">
                     <h3>Личная информация</h3>
                     <?= $form->field($model, 'first_name')->textInput() ?>
@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'phone')->textInput() ?>
                     <?= $form->field($model, 'sex_id')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\Sex::find()->all(), 'id', 'title')))?>
                     <?= $form->field($model, 'city_id')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\City::find()->all(), 'id', 'name')))?>
+                    <?= $form->field($model, 'currency_id')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\Currency::find()->all(), 'id', 'title')))?>
                     <?= $form->field($model, 'date_of_birth')->widget(\yii\jui\DatePicker::className(), [
                         'options' => ['class' => 'form-control'],
                         'dateFormat' => 'yyyy-MM-dd',

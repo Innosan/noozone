@@ -28,7 +28,7 @@ class Sex extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'title'], 'required'],
+            ['title', 'required'],
             [['id'], 'integer'],
             [['title'], 'string', 'max' => 10],
             [['id'], 'unique'],

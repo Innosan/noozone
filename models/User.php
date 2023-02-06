@@ -275,4 +275,28 @@ class User extends ActiveRecord implements IdentityInterface
     {
         // TODO: Implement validateAuthKey() method.
     }
+
+    public static function initAdminUser()
+    {
+        $adminUser = new User();
+
+        $adminUser->login = 'admin';
+        $adminUser->first_name = 'admin';
+        $adminUser->last_name = 'admin';
+        $adminUser->phone = '123456';
+        $adminUser->sex_id = '1';
+        $adminUser->city_id = '1';
+        $adminUser->mail = 'admin@admin.com';
+        $adminUser->date_of_birth = '2012-12-12';
+        $adminUser->photo_url = 'shrek.jpeg';
+
+        $adminUser->setPassword('admin');
+
+        return $adminUser;
+    }
+
+    public function getFullName()
+    {
+        return $this->first_name . " " . $this->last_name;
+    }
 }

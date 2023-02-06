@@ -14,6 +14,7 @@ class SignUpForm extends Model {
     public $mail;
     public $sex_id;
     public $city_id;
+    public $currency_id;
     public $date_of_birth;
     public $photo_url;
     public $password;
@@ -21,8 +22,8 @@ class SignUpForm extends Model {
     public function rules()
     {
         return [
+            [['login', 'first_name', 'last_name', 'phone', 'date_of_birth', 'photo_url', 'mail', 'password'], 'required'],
             ['login', 'trim'],
-            ['login', 'required'],
             ['login', 'unique', 'targetClass' => '\app\models\User', 'message' => 'This username has already been taken.'],
             ['login', 'string', 'min' => 2, 'max' => 50],
             ['first_name', 'string', 'min' => 2, 'max' => 50],
@@ -30,14 +31,35 @@ class SignUpForm extends Model {
             ['phone', 'string', 'min' => 2, 'max' => 15],
             ['sex_id', 'integer'],
             ['city_id', 'integer'],
+            ['currency_id', 'integer'],
             ['date_of_birth', 'string'],
             ['photo_url', 'string'],
-            ['mail', 'required'],
             ['mail', 'email'],
             ['mail', 'string', 'max' => 50],
             ['mail', 'unique', 'targetClass' => '\app\models\User', 'message' => 'This email address has already been taken.'],
-            ['password', 'required'],
             ['password', 'string', 'min' => 6],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'role_id' => 'ID роли',
+            'mail' => 'Почта',
+            'phone' => 'Телефон',
+            'login' => 'Логин',
+            'password' => 'Пароль',
+            'city_id' => 'Город',
+            'currency_id' => 'Валюта',
+            'sex_id' => 'Пол',
+            'photo_url' => 'Ссылка на фото',
+            'date_of_birth' => 'День рождения',
+            'first_name' => 'Имя',
+            'last_name' => 'Фамилия',
+            'cart_id' => 'ID корзины',
+            'favourite_id' => 'ID избранного',
+            'orders_id' => 'ID заказов',
         ];
     }
 
@@ -54,13 +76,19 @@ class SignUpForm extends Model {
         $user->phone = $this->phone;
         $user->sex_id = $this->sex_id;
         $user->city_id = $this->city_id;
+        $user->currency_id = $this->currency_id;
         $user->mail = $this->mail;
         $user->date_of_birth = $this->date_of_birth;
         $user->photo_url = $this->photo_url;
-        $user->password_hash = $this->password;
         $user->setPassword($this->password);
 
-        var_dump($user);
+        $user->save();
+
+        $auth = Yii::$app->authManager;
+
+        $buyerRole = $auth->getRole('buyer');
+
+        $auth->assign($buyerRole, $user->getId());
 
         return $user->save() ? $user : null;
     }

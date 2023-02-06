@@ -43,7 +43,11 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             ['label' => 'О нас', 'url' => ['/site/about']],
             ['label' => 'Админ', 'url' => ['/site/admin']],
             ['label' => 'Контакты', 'url' => ['/site/contact']],
-            ['label' => 'Зарегистрироваться', 'url' => ['/site/sign-up']],
+
+            Yii::$app->user->isGuest
+                ? ['label' => 'Зарегистрироваться', 'url' => ['/site/sign-up']]
+                : ['label' => ''],
+
             Yii::$app->user->isGuest
                 ? ['label' => 'Войти', 'url' => ['/site/login']]
                 : '<li class="nav-item">'
