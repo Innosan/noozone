@@ -15,7 +15,6 @@ class m221219_090870_create_table_user extends Migration
             '{{%user}}',
             [
                 'id' => $this->primaryKey(),
-                'role_id' => $this->integer(),
                 'mail' => $this->string(50)->notNull(),
                 'phone' => $this->string(15)->notNull(),
                 'login' => $this->string(50)->notNull(),
@@ -39,7 +38,6 @@ class m221219_090870_create_table_user extends Migration
         $this->createIndex('currency_id', '{{%user}}', ['currency_id']);
         $this->createIndex('favourite_id', '{{%user}}', ['favourite_id']);
         $this->createIndex('orders_id', '{{%user}}', ['orders_id']);
-        $this->createIndex('role_id', '{{%user}}', ['role_id']);
         $this->createIndex('sex_id', '{{%user}}', ['sex_id']);
 
         $this->addForeignKey(
@@ -47,15 +45,6 @@ class m221219_090870_create_table_user extends Migration
             '{{%user}}',
             ['sex_id'],
             '{{%sex}}',
-            ['id'],
-            'NO ACTION',
-            'NO ACTION'
-        );
-        $this->addForeignKey(
-            'user_ibfk_2',
-            '{{%user}}',
-            ['role_id'],
-            '{{%role}}',
             ['id'],
             'NO ACTION',
             'NO ACTION'

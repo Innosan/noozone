@@ -4,7 +4,6 @@ namespace app\models;
 use Yii;
 use yii\base\Exception;
 use yii\base\Model;
-use yii\helpers\VarDumper;
 
 class SignUpForm extends Model {
     public $login;

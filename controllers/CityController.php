@@ -4,9 +4,11 @@ namespace app\controllers;
 
 use app\models\City;
 use app\models\CitySearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\components\HideCrud;
 
 /**
  * CityController implements the CRUD actions for City model.
@@ -19,15 +21,7 @@ class CityController extends Controller
     public function behaviors()
     {
         return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
-                    ],
-                ],
-            ]
+            HideCrud::behaviors(),
         );
     }
 

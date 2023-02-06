@@ -6,8 +6,6 @@ use app\models\ChangeRole;
 use app\models\SignUpForm;
 use Yii;
 use yii\filters\AccessControl;
-use yii\helpers\VarDumper;
-use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\Response;

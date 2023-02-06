@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <h2 class="mb-3 fw-bold">Специальные действия</h2>
             <div class="d-flex flex-row">
                 <div class="d-flex flex-column">
-                    <a href="?r=site/change-role">Добавление менеджера</a>
+                    <a href="?r=site/change-role">Изменение ролей</a>
                 </div>
             </div>
         </div>

@@ -2,8 +2,11 @@
 
 namespace app\controllers;
 
+use app\components\HideCrud;
 use app\models\Card;
 use app\models\CardSearch;
+use Yii;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -19,15 +22,7 @@ class CardController extends Controller
     public function behaviors()
     {
         return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
-                    ],
-                ],
-            ]
+            HideCrud::behaviors(),
         );
     }
 

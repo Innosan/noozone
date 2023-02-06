@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\components\HideCrud;
 use app\models\ReviewMedia;
 use app\models\ReviewMediaSearch;
 use yii\web\Controller;
@@ -19,15 +20,7 @@ class ReviewMediaController extends Controller
     public function behaviors()
     {
         return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
-                    ],
-                ],
-            ]
+            HideCrud::behaviors(),
         );
     }
 

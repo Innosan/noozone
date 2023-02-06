@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\components\HideCrud;
 use app\models\ManagerList;
 use app\models\ManagerListSearch;
 use yii\web\Controller;
@@ -19,15 +20,7 @@ class ManagerListController extends Controller
     public function behaviors()
     {
         return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
-                    ],
-                ],
-            ]
+            HideCrud::behaviors(),
         );
     }
 
