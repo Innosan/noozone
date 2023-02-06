@@ -1,9 +1,17 @@
 <?php
 
-/** @var yii\web\View $this */
+/**
+ * @var yii\web\View $this
+ * @var app\models\SignUpForm $model
+ */
 
+use app\models\City;
+use app\models\Currency;
+use app\models\Sex;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
+use yii\jui\DatePicker;
 
 $this->title = 'Регистрация';
 $this->params['breadcrumbs'][] = $this->title;
@@ -21,10 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'first_name')->textInput() ?>
                     <?= $form->field($model, 'last_name')->textInput() ?>
                     <?= $form->field($model, 'phone')->textInput() ?>
-                    <?= $form->field($model, 'sex_id')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\Sex::find()->all(), 'id', 'title')))?>
-                    <?= $form->field($model, 'city_id')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\City::find()->all(), 'id', 'name')))?>
-                    <?= $form->field($model, 'currency_id')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\Currency::find()->all(), 'id', 'title')))?>
-                    <?= $form->field($model, 'date_of_birth')->widget(\yii\jui\DatePicker::className(), [
+                    <?= $form->field($model, 'sex_id')->dropDownList(Sex::getList())?>
+                    <?= $form->field($model, 'city_id')->dropDownList(City::getList())?>
+                    <?= $form->field($model, 'currency_id')->dropDownList(Currency::getList())?>
+                    <?= $form->field($model, 'date_of_birth')->widget(DatePicker::class, [
                         'options' => ['class' => 'form-control'],
                         'dateFormat' => 'yyyy-MM-dd',
                     ]) ?>

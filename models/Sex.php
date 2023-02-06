@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "sex".
@@ -54,5 +55,9 @@ class Sex extends \yii\db\ActiveRecord
     public function getUsers()
     {
         return $this->hasMany(User::class, ['sex_id' => 'id']);
+    }
+
+    public static function getList() {
+        return ArrayHelper::map(Sex::find()->all(), 'id', 'title');
     }
 }

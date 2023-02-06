@@ -1,6 +1,10 @@
 <?php
 
+use app\models\ManagerList;
+use app\models\Products;
+use app\models\User;
 use yii\helpers\Html;
+use yii\jui\DatePicker;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
@@ -20,21 +24,21 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'photo_url')->textInput() ?>
 
-    <?= $form->field($model, 'created_at')->widget(\yii\jui\DatePicker::className(), [
+    <?= $form->field($model, 'created_at')->widget(DatePicker::class, [
         'options' => ['class' => 'form-control'],
         'dateFormat' => 'yyyy-MM-dd',
     ]) ?>
 
-    <?= $form->field($model, 'updated_at')->widget(\yii\jui\DatePicker::className(), [
+    <?= $form->field($model, 'updated_at')->widget(DatePicker::class, [
         'options' => ['class' => 'form-control'],
         'dateFormat' => 'yyyy-MM-dd',
     ]) ?>
 
-    <?= $form->field($model, 'created_by')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\User::find()->all(), 'id', 'first_name')))?>
+    <?= $form->field($model, 'created_by')->dropDownList(User::getList())?>
 
-    <?= $form->field($model, 'manager_list_id')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\ManagerList::find()->all(), 'id', 'id')))?>
+    <?= $form->field($model, 'manager_list_id')->dropDownList(ManagerList::getList())?>
 
-    <?= $form->field($model, 'products_id')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\Products::find()->all(), 'id', 'id')))?>
+    <?= $form->field($model, 'products_id')->dropDownList(Products::getList())?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "card".
  *
  * @property int $id
- * @property int $number
+ * @property string $number
  * @property string $expiry_date
  * @property string $owner_name
  * @property int $is_default
@@ -33,8 +33,8 @@ class Card extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'number', 'expiry_date', 'owner_name', 'is_default', 'user_id'], 'required'],
-            [['id', 'number', 'is_default', 'user_id'], 'integer'],
+            [['number', 'expiry_date', 'owner_name', 'is_default', 'user_id'], 'required'],
+            [['id', 'is_default', 'user_id'], 'integer'],
             [['expiry_date'], 'safe'],
             [['owner_name'], 'string', 'max' => 40],
             [['id'], 'unique'],
@@ -53,7 +53,7 @@ class Card extends \yii\db\ActiveRecord
             'expiry_date' => 'Дата окончания',
             'owner_name' => 'Имя владельца',
             'is_default' => 'Использовать по умолчанию',
-            'user_id' => 'ID пользователя',
+            'user_id' => 'Пользователь',
         ];
     }
 

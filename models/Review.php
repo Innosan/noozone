@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "review".
@@ -97,5 +98,9 @@ class Review extends \yii\db\ActiveRecord
     public function getReviewMedia()
     {
         return $this->hasMany(ReviewMedia::class, ['review_id' => 'id']);
+    }
+
+    public static function getList() {
+        return ArrayHelper::map(Review::find()->all(), 'id', 'description');
     }
 }

@@ -21,7 +21,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     <a href="?r=currency/index">Валюты</a>
                     <a href="?r=delivery-type/index">Типы доставки</a>
                     <a href="?r=media-type/index">Тип медиа</a>
-                    <a href="?r=role/index">Роль</a>
                 </div>
                 <div class="d-flex flex-column">
                     <h3>Составные сущности</h3>
@@ -29,6 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <a href="?r=order-place/index">Место доставки</a>
                     <a href="?r=company/index">Компания</a>
                     <a href="?r=manager-list/index">Список менеджеров</a>
+                    <a href="?r=card/index">Список карт</a>
                 </div>
             </div>
         </div>

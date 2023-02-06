@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "media_type".
@@ -29,7 +30,7 @@ class MediaType extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'title'], 'required'],
+            [['title'], 'required'],
             [['id'], 'integer'],
             [['title'], 'string', 'max' => 20],
             [['id'], 'unique'],
@@ -65,5 +66,10 @@ class MediaType extends \yii\db\ActiveRecord
     public function getReviewMedia()
     {
         return $this->hasMany(ReviewMedia::class, ['media_type_id' => 'id']);
+    }
+
+    public static function getList()
+    {
+        return ArrayHelper::map(MediaType::find()->all(), 'id', 'title');
     }
 }

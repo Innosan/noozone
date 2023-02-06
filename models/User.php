@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use yii\base\Exception;
 use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 use yii\web\IdentityInterface;
 
 /**
@@ -244,26 +245,29 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $adminUser = new User();
 
-        $adminSex = new Sex();
-        $adminCurrency = new Currency();
-        $adminCity = new City();
-
-        $adminSex->title = "Trans";
-        $adminSex->save();
-
-        $adminCurrency->title = "RUB";
-        $adminCurrency->save();
-
-        $adminCity->name = "St. Petersburg";
-        $adminCity->save();
+//        $adminSex = new Sex();
+//        $adminCurrency = new Currency();
+//        $adminCity = new City();
+//
+//        $adminSex->title = "Trans";
+//        $adminSex->save();
+//
+//        $adminCurrency->title = "USD";
+//        $adminCurrency->save();
+//
+//        $adminCity->name = "St. Petersburg";
+//        $adminCity->save();
 
         $adminUser->login = 'admin';
         $adminUser->first_name = 'admin';
         $adminUser->last_name = 'admin';
         $adminUser->phone = '123456';
-        $adminUser->sex_id = $adminSex->id;
-        $adminUser->city_id = $adminCity->id;
-        $adminUser->currency_id = $adminCurrency->id;
+//        $adminUser->sex_id = $adminSex->id;
+//        $adminUser->city_id = $adminCity->id;
+//        $adminUser->currency_id = $adminCurrency->id;
+        $adminUser->sex_id = 1;
+        $adminUser->city_id = 1;
+        $adminUser->currency_id = 1;
         $adminUser->mail = 'admin@admin.com';
         $adminUser->date_of_birth = '2012-12-12';
         $adminUser->photo_url = 'shrek.jpeg';
@@ -275,6 +279,10 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getFullName()
     {
-        return $this->first_name . " " . $this->last_name;
+        return $this->first_name . " " . $this->last_name . ", " . $this->mail;
+    }
+
+    public static function getList() {
+        return ArrayHelper::map(User::find()->all(), 'id', 'fullName');
     }
 }

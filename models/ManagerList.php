@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "manager_list".
@@ -65,5 +66,9 @@ class ManagerList extends \yii\db\ActiveRecord
     public function getManager()
     {
         return $this->hasOne(User::class, ['id' => 'manager_id']);
+    }
+
+    public static function getList() {
+        return ArrayHelper::map(ManagerList::find()->all(), 'id', 'id');
     }
 }

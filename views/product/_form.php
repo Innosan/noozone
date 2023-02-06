@@ -1,6 +1,10 @@
 <?php
 
+use app\models\Category;
+use app\models\Company;
+use app\models\User;
 use yii\helpers\Html;
+use yii\jui\DatePicker;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
@@ -12,8 +16,6 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id')->textInput() ?>
-
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'is_discounted')->checkbox() ?>
@@ -24,25 +26,25 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'way_to_use')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'company_id')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\Company::find()->all(), 'id', 'title')))?>
+    <?= $form->field($model, 'company_id')->dropDownList(Company::getList())?>
 
     <?= $form->field($model, 'rating')->input('number', ['min' => 1, 'max' => 5, 'step' => 1]) ?>
 
-    <?= $form->field($model, 'created_at')->widget(\yii\jui\DatePicker::className(), [
+    <?= $form->field($model, 'created_at')->widget(DatePicker::class, [
         'options' => ['class' => 'form-control'],
         'dateFormat' => 'yyyy-MM-dd',
     ]) ?>
 
-    <?= $form->field($model, 'updated_at')->widget(\yii\jui\DatePicker::className(), [
+    <?= $form->field($model, 'updated_at')->widget(DatePicker::class, [
         'options' => ['class' => 'form-control'],
         'dateFormat' => 'yyyy-MM-dd',
     ]) ?>
 
-    <?= $form->field($model, 'created_by')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\User::find()->all(), 'id', 'first_name')))?>
+    <?= $form->field($model, 'created_by')->dropDownList(User::getList())?>
 
     <?= $form->field($model, 'price')->textInput() ?>
 
-    <?= $form->field($model, 'category_id')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\Category::find()->all(), 'id', 'title')))?>
+    <?= $form->field($model, 'category_id')->dropDownList(Category::getList())?>
 
     <?= $form->field($model, 'discount')->textInput() ?>
 

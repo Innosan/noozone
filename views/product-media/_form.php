@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Product;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -14,11 +15,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id')->textInput() ?>
 
-    <?= $form->field($model, 'media_type_id')->textInput() ?>
+    <?= $form->field($model, 'product_id')->dropDownList(\app\models\MediaType::getList())?>
 
     <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'product_id')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\Product::find()->all(), 'id', 'title')))?>
+    <?= $form->field($model, 'product_id')->dropDownList(Product::getList())?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
