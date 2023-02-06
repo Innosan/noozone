@@ -1,6 +1,9 @@
 <?php
 
+use app\models\Product;
+use app\models\User;
 use yii\helpers\Html;
+use yii\jui\DatePicker;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
@@ -26,19 +29,19 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'dislikes')->textInput() ?>
 
-    <?= $form->field($model, 'created_at')->widget(\yii\jui\DatePicker::className(), [
+    <?= $form->field($model, 'created_at')->widget(DatePicker::class, [
         'options' => ['class' => 'form-control'],
         'dateFormat' => 'yyyy-MM-dd',
     ]) ?>
 
-    <?= $form->field($model, 'updated_at')->widget(\yii\jui\DatePicker::className(), [
+    <?= $form->field($model, 'updated_at')->widget(DatePicker::class, [
         'options' => ['class' => 'form-control'],
         'dateFormat' => 'yyyy-MM-dd',
     ]) ?>
 
-    <?= $form->field($model, 'created_by')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\User::find()->all(), 'id', 'first_name')))?>
+    <?= $form->field($model, 'created_by')->dropDownList(User::getList())?>
 
-    <?= $form->field($model, 'product_id')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\Product::find()->all(), 'id', 'title')))?>
+    <?= $form->field($model, 'product_id')->dropDownList(Product::getList())?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

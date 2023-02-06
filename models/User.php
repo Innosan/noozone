@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use yii\base\Exception;
 use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 use yii\web\IdentityInterface;
 
 /**
@@ -275,6 +276,10 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getFullName()
     {
-        return $this->first_name . " " . $this->last_name;
+        return $this->first_name . " " . $this->last_name . ", " . $this->mail;
+    }
+
+    public static function getList() {
+        return ArrayHelper::map(User::find()->all(), 'id', 'fullName');
     }
 }

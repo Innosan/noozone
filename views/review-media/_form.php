@@ -1,5 +1,7 @@
 <?php
 
+use app\models\MediaType;
+use app\models\Review;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -12,11 +14,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'media_type_id')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\MediaType::find()->all(), 'id', 'title')))?>
+    <?= $form->field($model, 'media_type_id')->dropDownList(MediaType::getList())?>
 
     <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'review_id')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\Review::find()->all(), 'id', 'description')))?>
+    <?= $form->field($model, 'review_id')->dropDownList(Review::getList())?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

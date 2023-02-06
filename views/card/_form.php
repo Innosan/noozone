@@ -1,7 +1,10 @@
 <?php
 
+use app\models\User;
 use yii\helpers\Html;
+use yii\jui\DatePicker;
 use yii\widgets\ActiveForm;
+use yii\widgets\MaskedInput;
 
 /** @var yii\web\View $this */
 /** @var app\models\Card $model */
@@ -12,11 +15,15 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id')->textInput() ?>
+    <?= $form->field($model, 'number')->widget(MaskedInput::class,[
+        'name' => 'number',
+        'mask' => '9999-9999-9999-9999',
+        'clientOptions' => [
+            'removeMaskOnSubmit' => true,
+        ]
+    ]) ?>
 
-    <?= $form->field($model, 'number')->textInput() ?>
-
-    <?= $form->field($model, 'expiry_date')->widget(\yii\jui\DatePicker::className(), [
+    <?= $form->field($model, 'expiry_date')->widget(DatePicker::class, [
         'options' => ['class' => 'form-control'],
         'dateFormat' => 'yyyy-MM-dd',
     ]) ?>
@@ -25,7 +32,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'is_default')->checkbox() ?>
 
-    <?= $form->field($model, 'user_id')->dropDownList((\yii\helpers\ArrayHelper::map(\app\models\User::find()->all(), 'id', 'first_name')))?>
+    <?= $form->field($model, 'user_id')->dropDownList(User::getList())?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

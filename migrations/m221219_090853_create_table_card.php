@@ -15,7 +15,7 @@ class m221219_090853_create_table_card extends Migration
             '{{%card}}',
             [
                 'id' => $this->primaryKey(),
-                'number' => $this->integer()->notNull(),
+                'number' => $this->string(16)->notNull(),
                 'expiry_date' => $this->date()->notNull(),
                 'owner_name' => $this->string(40)->notNull(),
                 'is_default' => $this->boolean()->notNull(),
