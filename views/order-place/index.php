@@ -1,5 +1,7 @@
 <?php
 
+use app\components\ModelHelper;
+use app\models\City;
 use app\models\OrderPlace;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -28,12 +30,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'city_id',
-            'street',
-            'house',
-            'flat',
+            ['attribute' => 'id'],
+            ['attribute' => 'city_id',
+                'value' => function ($model) {
+                    return Html::a($model->city->name, Url::to(['city/view', 'id' => $model->id]));
+                },
+                'format' => 'html',
+                'filter' => ModelHelper::getListOf(City::instance(), 'name'),
+                'filterInputOptions' => ['prompt' => 'All cities', 'class' => 'form-control', 'id' => null],
+            ],
+            ['attribute' => 'street'],
+            ['attribute' => 'house'],
+            ['attribute' => 'flat'],
             //'description:ntext',
             //'user_id',
             [
@@ -44,6 +52,4 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
-
-
 </div>

@@ -29,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <a href="?r=company/index">Компания</a>
                     <a href="?r=manager-list/index">Список менеджеров</a>
                     <a href="?r=card/index">Список карт</a>
+                    <a href="?r=review/index">Отзывы</a>
                 </div>
             </div>
         </div>

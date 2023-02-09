@@ -1,6 +1,10 @@
 <?php
 
+use app\components\ModelHelper;
+use app\models\Category;
+use app\models\Company;
 use app\models\Product;
+use app\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -28,22 +32,43 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'title',
-            'is_discounted',
-            'description:ntext',
-            'specifications:ntext',
-            //'way_to_use:ntext',
-            //'company_id',
-            //'rating',
-            //'created_at',
-            //'updated_at',
-            //'created_by',
-            //'price',
-            //'category_id',
-            //'discount',
-            //'new_price',
+            ['attribute' => 'id'],
+            ['attribute' => 'title'],
+            ['attribute' => 'description'],
+            ['attribute' => 'specifications'],
+            ['attribute' => 'way_to_use'],
+            ['attribute' => 'is_discounted',
+                'value' => function ($model) {
+                    return $model->is_discounted ? 'Да' : 'Нет';
+                },
+                'filter' => [1 => "Да", 0 => "Нет"]
+            ],
+            ['attribute' => 'company_id',
+                'value' => function ($model) {
+                    return Html::a($model->company->title, Url::to(['company/view', 'id' => $model->id]));
+                },
+                'format' => 'html',
+                'filter' => ModelHelper::getListOf(Company::instance(), 'title'),
+            ],
+            ['attribute' => 'rating'],
+            ['attribute' => 'created_at', 'format' => ['date', 'php:d.m.Y']],
+            ['attribute' => 'updated_at', 'format' => ['date', 'php:d.m.Y']],
+            ['attribute' => 'created_by',
+                'value' => function ($model) {
+                    return $model->user->fullName;
+                },
+                'filter' => ModelHelper::getListOf(User::instance(), 'fullName'),
+            ],
+            ['attribute' => 'price'],
+            ['attribute' => 'category_id',
+                'value' => function ($model) {
+                    return Html::a($model->category->title, Url::to(['category/view', 'id' => $model->id]));
+                },
+                'format' => 'html',
+                'filter' => ModelHelper::getListOf(Category::instance(), 'title'),
+            ],
+            ['attribute' => 'discount'],
+            ['attribute' => 'new_price'],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Product $model, $key, $index, $column) {

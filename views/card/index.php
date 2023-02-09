@@ -29,17 +29,22 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'number',
-            'expiry_date',
-            'owner_name',
-            'is_default',
-            //'user_id',
+            ['attribute' => 'id'],
+            ['attribute' => 'number'],
+            ['attribute' => 'expiry_date', 'format' => ['date', 'php:d.m.Y']],
+            ['attribute' => 'owner_name'],
+            ['attribute' => 'is_default',
+                'value' => function ($model) {
+                    return $model->is_default ? 'Да' : 'Нет';
+                },
+                'filter' => [1 => "Да", 0 => "Нет"],
+                'filterInputOptions' => ['prompt' => 'Все статусы', 'class' => 'form-control', 'id' => null],
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Card $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>
