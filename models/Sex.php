@@ -56,8 +56,4 @@ class Sex extends \yii\db\ActiveRecord
     {
         return $this->hasMany(User::class, ['sex_id' => 'id']);
     }
-
-    public static function getList() {
-        return ArrayHelper::map(Sex::find()->all(), 'id', 'title');
-    }
 }

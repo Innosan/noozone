@@ -67,8 +67,4 @@ class ManagerList extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'manager_id']);
     }
-
-    public static function getList() {
-        return ArrayHelper::map(ManagerList::find()->all(), 'id', 'id');
-    }
 }

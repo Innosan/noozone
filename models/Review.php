@@ -99,8 +99,4 @@ class Review extends \yii\db\ActiveRecord
     {
         return $this->hasMany(ReviewMedia::class, ['review_id' => 'id']);
     }
-
-    public static function getList() {
-        return ArrayHelper::map(Review::find()->all(), 'id', 'description');
-    }
 }

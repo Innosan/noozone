@@ -106,8 +106,4 @@ class Company extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Product::class, ['company_id' => 'id']);
     }
-
-    public static function getList() {
-        return ArrayHelper::map(Company::find()->all(), 'id', 'title');
-    }
 }

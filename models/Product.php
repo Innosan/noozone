@@ -154,8 +154,4 @@ class Product extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Review::class, ['product_id' => 'id']);
     }
-
-    public static function getList() {
-        return ArrayHelper::map(Product::find()->all(), 'id', 'title');
-    }
 }

@@ -67,9 +67,4 @@ class MediaType extends \yii\db\ActiveRecord
     {
         return $this->hasMany(ReviewMedia::class, ['media_type_id' => 'id']);
     }
-
-    public static function getList()
-    {
-        return ArrayHelper::map(MediaType::find()->all(), 'id', 'title');
-    }
 }

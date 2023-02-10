@@ -78,8 +78,4 @@ class Products extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Product::class, ['id' => 'product_id']);
     }
-
-    public static function getList() {
-        return ArrayHelper::map(Products::find()->all(), 'id', 'id');
-    }
 }

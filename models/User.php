@@ -277,12 +277,14 @@ class User extends ActiveRecord implements IdentityInterface
         return $adminUser;
     }
 
-    public function getFullName()
+    /**
+     * Returns the full name of a User,
+     * can be used as class property.
+     *
+     * @return string
+     */
+    public function getFullName(): string
     {
         return $this->first_name . " " . $this->last_name . ", " . $this->mail;
-    }
-
-    public static function getList() {
-        return ArrayHelper::map(User::find()->all(), 'id', 'fullName');
     }
 }

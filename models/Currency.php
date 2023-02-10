@@ -56,9 +56,4 @@ class Currency extends \yii\db\ActiveRecord
     {
         return $this->hasMany(User::class, ['currency_id' => 'id']);
     }
-
-    public static function getList()
-    {
-        return ArrayHelper::map(Currency::find()->all(), 'id', 'title');
-    }
 }
