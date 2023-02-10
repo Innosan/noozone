@@ -46,7 +46,7 @@ class Cart extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'total_price' => 'Полная стоимость',
-            'products_id' => 'ID продуктов',
+            'products_id' => 'Продукты',
         ];
     }
 

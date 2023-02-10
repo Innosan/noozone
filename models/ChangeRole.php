@@ -8,10 +8,10 @@ use yii\helpers\VarDumper;
 
 class ChangeRole extends Model
 {
-    public $user_id;
-    public $new_role;
+    public int $user_id;
+    public string $new_role;
 
-    public function rules()
+    public function rules(): array
     {
         return [
             [['user_id', 'new_role'], 'required'],

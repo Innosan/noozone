@@ -47,9 +47,9 @@ class ProductMedia extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'media_type_id' => 'ID типа медиа',
+            'media_type_id' => 'Тип медиа',
             'url' => 'Ссылка',
-            'product_id' => 'ID продукта',
+            'product_id' => 'Продукт',
         ];
     }
 

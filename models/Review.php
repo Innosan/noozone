@@ -66,7 +66,7 @@ class Review extends \yii\db\ActiveRecord
             'created_at' => 'Создано',
             'updated_at' => 'Обновлено',
             'created_by' => 'Кем создано',
-            'product_id' => 'ID продукта',
+            'product_id' => 'Продукт',
         ];
     }
 

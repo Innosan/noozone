@@ -62,8 +62,8 @@ class Company extends \yii\db\ActiveRecord
             'created_at' => 'Создано',
             'updated_at' => 'Обновлено',
             'created_by' => 'Кем создано',
-            'manager_list_id' => 'ID списка менеджеров',
-            'products_id' => 'ID продуктов',
+            'manager_list_id' => 'Список менеджеров',
+            'products_id' => 'Продукты',
         ];
     }
 

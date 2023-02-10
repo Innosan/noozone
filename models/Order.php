@@ -52,10 +52,10 @@ class Order extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'delivery_type_id' => 'ID способа доставки',
+            'delivery_type_id' => 'Способ доставки',
             'total_cost' => 'Полная стоимость',
             'total_discount' => 'Скидка',
-            'card_id' => 'ID карты',
+            'card_id' => 'Платежная карта',
             'created_at' => 'Создано',
             'is_delivered' => 'Доставлено',
         ];

@@ -44,7 +44,6 @@ class SignUpForm extends Model {
     {
         return [
             'id' => 'ID',
-            'role_id' => 'ID роли',
             'mail' => 'Почта',
             'phone' => 'Телефон',
             'login' => 'Логин',

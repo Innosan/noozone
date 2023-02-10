@@ -2,13 +2,17 @@
 
 namespace app\components;
 
-use Yii;
 use yii\base\Behavior;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
 class HideCrud extends Behavior
 {
+    /**
+     * Custom behavior to hide CRUD from user view
+     *
+     * @return array[]
+     */
     public static function behaviors() {
         return
             [
