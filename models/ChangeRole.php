@@ -2,9 +2,7 @@
 
 namespace app\models;
 
-use app\widgets\Alert;
 use yii\base\Model;
-use yii\helpers\VarDumper;
 
 class ChangeRole extends Model
 {

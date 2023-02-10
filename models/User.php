@@ -5,7 +5,6 @@ namespace app\models;
 use Yii;
 use yii\base\Exception;
 use yii\db\ActiveRecord;
-use yii\helpers\ArrayHelper;
 use yii\web\IdentityInterface;
 
 /**
@@ -15,8 +14,8 @@ use yii\web\IdentityInterface;
  * @property string $mail
  * @property string $phone
  * @property string $login
- * @property string $password sha256 encrypted pass
- * @property string $password_hash sha256 encrypted pass
+ * @property string $password encrypted pass
+ * @property string $password_hash encrypted pass
  * @property int $city_id
  * @property int $currency_id
  * @property int $sex_id
@@ -69,9 +68,9 @@ class User extends ActiveRecord implements IdentityInterface
             'date_of_birth' => 'День рождения',
             'first_name' => 'Имя',
             'last_name' => 'Фамилия',
-            'cart_id' => 'ID корзины',
-            'favourite_id' => 'ID избранного',
-            'orders_id' => 'ID заказов',
+            'cart_id' => 'Корзина',
+            'favourite_id' => 'Избранное',
+            'orders_id' => 'Заказы',
         ];
     }
 
@@ -241,6 +240,13 @@ class User extends ActiveRecord implements IdentityInterface
         // TODO: Implement validateAuthKey() method.
     }
 
+    /**
+     * Creates an example of User with admin rights,
+     * used with for Rbac initialize.
+     *
+     * @return User
+     * @throws Exception
+     */
     public static function initAdminUser()
     {
         $adminUser = new User();
